@@ -1,4 +1,4 @@
-# 本日の課題
+# 2014.05.12 (代々木)
 
 ## 例外処理
 
@@ -70,3 +70,35 @@
   FizzBuzzTest [1,2,3,"x",5,6,7,15]
   ~~~
 
+## 処理の切り替え
+
+インターフェースを揃えて、処理の内容を切り替えられるようにする仕組みを実装しなさい
+
+* Hashの値にProcが入っている形で、処理を切り替えるようにする
+  
+  ~~~ruby
+  cafe[:espresso].call(:large, 2)
+  # => "エスプレッソのLサイズを2個つくります。"
+  cafe[:latte].call(:small, 10)
+  # => "カフェラテのSサイズを10個つくります。"
+  cafe[:flattwhite].call(:medium, 1)
+  # => "当店でフラットホワイトは、カフェラテになります。そちらでよろしいですか？"
+  ~~~
+
+* クラス・メソッドを切り替える形で、処理を切り替えるようにする
+  
+  ~~~ruby
+  cafe.__send__(:espresso, :large, 2)
+  cafe.__send__(:latte, :small, 10)
+  cafe.__send__(:flattwhite, :medium, 1)
+  ~~~
+
+## 次回以降
+
+* Validatorを動くようにして、現時点で必要になるルールを作成する
+
+* Controllerに対するspecを定義する
+
+* Cookieの処理など、Controllerの責任領域について検討を進める
+
+* Loginを完成させ、次の処理に移る

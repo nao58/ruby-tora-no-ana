@@ -50,14 +50,14 @@ class Validator
     @errors = {}.tap do |res|
       @setting.each do |key, setting|
         error = false
-        setting.each do |setting_key, setting_val|
-          val = params.key?(key) ? params[key] : nil
-          if val.nil?
-            error = "Parameter #{key} is mandatory." if setting_key == :mandatory
-          else
+        val = params.key?(key) ? params[key] : nil
+        if val.nil?
+          error = "Parameter #{key} is mandatory." if setting[:mandatory]
+        else
+          setting.each do |setting_key, setting_val|
             error = @rules[setting_key].call(key, val, setting_key, setting_val)
+            break if error
           end
-          break if error
         end
         res[key] = error if error
         break if error && opts[:error]==:only_first
