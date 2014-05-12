@@ -38,17 +38,20 @@ class FizzBuzz
 
 end
 
-[0,1,2,3,4,5,6,7,15,16,"x",18].each do |num|
-  begin
-    out = FizzBuzz.exec num
-  rescue FizzBuzz::Zero => e
-    out = "ZERO"
-  rescue FizzBuzz::FizzBuzzException => e
-    out = e.message
-  rescue Exception => e
-    raise e
-  ensure
-    p out
+def FizzBuzzTest arr
+  arr.each do |num|
+    begin
+      out = FizzBuzz.exec num
+    rescue FizzBuzz::Zero => e
+      out = "ZERO"
+    rescue FizzBuzz::FizzBuzzException => e
+      out = e.message
+    rescue Exception => e
+      raise e
+    ensure
+      p out
+    end
   end
 end
 
+FizzBuzzTest [0,1,2,3,4,5,6,7,15,16,"x",18]
