@@ -27,3 +27,46 @@
     FizzBuzz.exec num  # "x"の際に発生するであろうエラー時には、処理を中断
   end
   ~~~
+
+* 最終的に、メソッドは次のような結果を返してください
+  
+  ~~~ruby
+  FizzBuzz.exec 1
+  # => true
+  FizzBuzz.exec 2
+  # => true
+  FizzBuzz.exec 3
+  # => raise error of "FizzBuzz::Fizz"
+  FizzBuzz.exec 4
+  # => true
+  FizzBuzz.exec 5
+  # => raise error of "FizzBuzz::Buzz"
+  FizzBuzz.exec 15
+  # => raise error of "FizzBuzz::FizzBuzz"
+  ~~~
+
+* 次のような配列を渡した結果
+  
+  ~~~ruby
+  FizzBuzzTest [1,2,3,4,5,6,7,15]
+  ~~~
+
+  次のように出力されるテスト関数`FizzBuzzTest`を、`FizzBuzz.exec`を使って作りなさい
+
+  ~~~
+  "1"
+  "2"
+  "Fizz!"
+  "4"
+  "Buzz!"
+  "6"
+  "7"
+  "FizzBuzz!"
+  ~~~
+
+  この時、次のような配列を渡すと、処理が中断されるようにします
+
+  ~~~ruby
+  FizzBuzzTest [1,2,3,"x",5,6,7,15]
+  ~~~
+
