@@ -2,36 +2,53 @@
 
 class FizzBuzz
 
-  class Fizz < Exception
+  class FizzBuzzException < Exception; end
+
+  class Fizz < FizzBuzzException
+    def message
+      'Fizz!'
+    end
   end
 
-  class Buzz < Exception
+  class Buzz < FizzBuzzException
+    def message
+      'Buzz!'
+    end
   end
 
-  class FizzBuzz < Exception
+  class FizzBuzz < FizzBuzzException
+    def message
+      'FizzBuzz!'
+    end
+  end
+
+  class Zero < Exception
+    def message
+      'Cannot handle the value zero.'
+    end
   end
 
   def self.exec num
+    raise Zero.new if num == 0
     raise FizzBuzz.new if num.modulo(3) == 0 && num.modulo(5) == 0
     raise Fizz.new if num.modulo(3) == 0
     raise Buzz.new if num.modulo(5) == 0
-    p "*** #{num} ***"
+    num
   end
 
 end
 
-[1,2,3,4,5,6,"x",7,15].each do |num|
+[0,1,2,3,4,5,6,7,15,16,"x",18].each do |num|
   begin
-    FizzBuzz.exec num
-  rescue FizzBuzz::Fizz => e
-    p "Fizz!"
-  rescue FizzBuzz::Buzz => e
-    p "Buzz!"
-  rescue FizzBuzz::FizzBuzz => e
-    p "FizzBuzz!"
+    out = FizzBuzz.exec num
+  rescue FizzBuzz::Zero => e
+    out = "ZERO"
+  rescue FizzBuzz::FizzBuzzException => e
+    out = e.message
   rescue Exception => e
-    p e.message
-    break
+    raise e
+  ensure
+    p out
   end
 end
 

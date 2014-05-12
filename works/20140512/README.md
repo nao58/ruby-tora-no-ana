@@ -32,13 +32,13 @@
   
   ~~~ruby
   FizzBuzz.exec 1
-  # => true
+  # => 1
   FizzBuzz.exec 2
-  # => true
+  # => 2
   FizzBuzz.exec 3
   # => raise error of "FizzBuzz::Fizz"
   FizzBuzz.exec 4
-  # => true
+  # => 4
   FizzBuzz.exec 5
   # => raise error of "FizzBuzz::Buzz"
   FizzBuzz.exec 15
